@@ -17,6 +17,7 @@ public class RobotMovement : MonoBehaviour
     bool isGrounded;
     float gravity = -9.8f;
     float verticalVelocity;
+    [HideInInspector]public Vector2 moveInput;
 
 
     void Awake() {
@@ -47,7 +48,7 @@ public class RobotMovement : MonoBehaviour
         }
         verticalVelocity += gravity * Time.deltaTime;
         Vector3 moveDir = Vector3.zero;
-        Vector2 moveInput = moveAction.ReadValue<Vector2>();
+        moveInput = moveAction.ReadValue<Vector2>();
 
         if(moveInput.magnitude > 0.01f) {
             Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
