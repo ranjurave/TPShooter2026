@@ -24,6 +24,8 @@ public class RobotMovement : MonoBehaviour
     float verticalVelocity = -2.0f;
     float gravity = -9.81f;
 
+    [HideInInspector] public bool IsJumping;
+
     void Awake() {
         actionMap = inputActions.FindActionMap("Player");
         moveAction = actionMap.FindAction("Move");
@@ -56,8 +58,13 @@ public class RobotMovement : MonoBehaviour
         }
 
         if(jumpAction.IsPressed() && isGrounded) {
+            IsJumping = true;
             verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
+        else {
+            IsJumping = false;
+        }
+
         verticalVelocity += gravity * Time.deltaTime;
 
         moveInput = moveAction.ReadValue<Vector2>();

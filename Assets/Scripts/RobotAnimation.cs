@@ -19,5 +19,10 @@ public class RobotAnimation : MonoBehaviour
         else {
             robotAnimator.SetBool("IsWalking", false);
         }
+
+        if (robotMovement.IsJumping) {
+            robotAnimator.SetTrigger("IsJumping");
+        }
+
     }
 }
