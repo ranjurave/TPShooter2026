@@ -8,10 +8,13 @@ public class AIEnemyScript : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] LayerMask playerLayer, groundLayer;
     [SerializeField] float patrolRange;
+    [SerializeField] GameObject projectileBullet;
+    [SerializeField] Transform firePoint;
     Vector3 walkPoint;
 
     bool playerInSightRange, playerInAttackRange;
     bool walkPointSet;
+    bool alreadyShooting = false;
 
     private void Awake() {
           agent = GetComponent<NavMeshAgent>();
@@ -35,7 +38,20 @@ public class AIEnemyScript : MonoBehaviour
 
     void AttackPlayer() {
         // Attack logic here
-        Debug.Log("Attacking player");
+        //Debug.Log("Attacking player");
+        agent.SetDestination(transform.position); // Stop moving to attack
+        transform.LookAt(player);
+
+        if(!alreadyShooting) {
+            Instantiate(projectileBullet, firePoint.position, firePoint.rotation);
+
+            alreadyShooting = true;
+            Invoke(nameof(ResetShoot), 1.0f); 
+        }
+    }
+
+    void ResetShoot() {
+        alreadyShooting = false;
     }
 
     void Patrol() {
@@ -44,22 +60,22 @@ public class AIEnemyScript : MonoBehaviour
         if(!walkPointSet) SearchWalkPoint();
 
         Vector3 distanceToWalk = transform.position - walkPoint;
-        if(distanceToWalk.magnitude < 1.0f) walkPointSet = false;
+        if (distanceToWalk.magnitude < 1.0f) walkPointSet = false;
 
         if (walkPointSet) {
             agent.SetDestination(walkPoint);
         }
     }
 
-    private void SearchWalkPoint() {
+    void SearchWalkPoint() {
         float randomZ = Random.Range(-patrolRange, patrolRange);
         float randomX = Random.Range(-patrolRange, patrolRange);
+
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
         if (Physics.CheckSphere(walkPoint, 2.0f, groundLayer)) {
             walkPointSet = true;
         }
-
     }
 
     private void OnDrawGizmosSelected() {

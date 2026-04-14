@@ -316,7 +316,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.375, z: 0.73}
   m_LocalScale: {x: 1.41664, y: 0.09975567, z: 1.41664}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 368954252}
   m_Father: {fileID: 2074334643}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &321053291
@@ -696,6 +697,37 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: f47f16422dcf04942b81f9fc9083b1d4, type: 2}
   m_BuildHeightMesh: 0
+--- !u!1 &368954251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 368954252}
+  m_Layer: 0
+  m_Name: ShootStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &368954252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368954251}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.709}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 321053290}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,8 +1343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58a481f45c275db4fbe79049ab145ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  attackRange: 8.17
-  sightRange: 9.87
+  attackRange: 8.48
+  sightRange: 12.97
   player: {fileID: 14051437}
   playerLayer:
     serializedVersion: 2
@@ -1321,6 +1353,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   patrolRange: 100
+  projectileBullet: {fileID: 7778774604338476942, guid: 1c5b7018abec6fd499b5c35ef18216a9, type: 3}
+  firePoint: {fileID: 368954252}
 --- !u!1 &1937085942 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e61df41206f318748aa64cd9ba3895a8, type: 3}
